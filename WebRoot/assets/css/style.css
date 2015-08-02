@@ -9,6 +9,19 @@ body {
 .ui-widget-header {
 	
 }
+/*工具提示的文本颜色*/
+.ui-tooltip {
+	color: #666;
+}
+
+/*邮箱自动补全悬停背景色*/
+.ui-menu-item a.ui-state-focus {
+	
+}
+
+.ui-menu-item a {
+	color: #666;
+}
 
 #header {
 	width: 100%;
@@ -62,4 +75,35 @@ body {
 #header .header_member a {
 	text-decoration: none;
 	color: #555;
+}
+
+#reg {
+	padding: 15px 0 0 15px;
+}
+
+#reg p {
+	margin: 10px 0;
+	padding: 0;
+}
+
+#reg p label {
+	font-size: 14px;
+	color: #666;
+}
+
+#reg .star {
+	color: red;
+	font-size: 14px; 
+}
+
+#reg .text {
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	background: #fff;
+	width: 200px;
+	height: 25px;
+	line-height: 25;
+	text-indent: 5px;
+	font-size: 13px;
+	color: #666;
 }

@@ -32,7 +32,29 @@
   	</div>
   	
   	<div id="reg" title="会员注册">
-  		<input type="radio" name="sex" id="male" value="male"><label for="male">男</label></input><input type="radio" name="sex" id="female" value="female"><label for="female">女</label></input>
+  		<p>
+  			<label for="user">账号：</label>
+  			<input name="user" type="text" class="text" id="user" title="请输入账号，不少于2位！"/>
+  			<span class="star">*</span>
+  		</p>
+  		<p>
+  			<label for="pass">密码：</label>
+  			<input name="pass" type="password" class="text" id="pass" title="请输入密码，不少于6位！"/>
+  			<span class="star">*</span>
+  		</p>
+  		<p>
+  			<label for="email">邮箱：</label>
+  			<input name="email" type="text" class="text" id="email" title="请输入正确的邮箱"/>
+  			<span class="star">*</span>
+  		</p>
+  		<p>
+  			<label>性别：</label>
+  			<input name="sex" type="radio" value="male" id="male" checked="checked"><label for="male">男</label></input><input name="sex" type="radio" value="famale" id="famale"><label for="famale">女</label></input>
+  		</p>
+  		<p>
+  			<label for="date">生日：</label>
+  			<input name="date" type="text" readonly="readonly" class="text" id="date">
+  		</p>
   	</div>
   	
   </body>

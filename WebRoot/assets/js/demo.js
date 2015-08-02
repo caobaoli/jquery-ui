@@ -1,11 +1,8 @@
 $(function() {
 	$('#search_button').button({
-		//disabled: true,//按钮就不可用
-//		label: '搜索',//标题
 		icons: {
 			primary: 'ui-icon-search',
 		},
-//		text: false,//让文字隐藏 
 	});
 	
 	
@@ -24,15 +21,10 @@ $(function() {
 		},
 		autoOpen: false,//不让html中显示
 		modal: true,//后台不可操作
+		resizable: false,//不可改变大小
+		width: 350,
+		height: 340,
 		closeText: '关闭',
-//		height: 500,
-//		width: 500,
-//		minWidth: 300,
-//		minHeight: 300,
-//		maxWidth: 700,
-//		maxHeight: 600
-//		show: true,
-//		hide: true,
 		show: 'slide',
 		hide: 'slide',
 	}); 
@@ -41,11 +33,30 @@ $(function() {
 		$('#reg').dialog('open');
 	});
 	
-//	$('#reg').parent().find('button').eq(1).button('disable');//禁用dialog中的某按钮
+//	$('#reg input[type=radio]').button();
 	
 	$('#reg').buttonset();
 	
+	//生日部件
+	$('#date').datepicker(); 
 	
+	/*设置tooltip的属性*/
+	$('#reg input[title]').tooltip({
+//		disabled: true,
+//		content: '改变title',
+//		tooltipClass: 'a',//显示文字的css样式
+		position: {
+			my: 'left+5 center',
+			at: 'right center'
+		}
+	});
+	
+	/*邮箱自动补全*/
+	var host=['aa', 'aaaa', 'aaaaaa', 'bb'];
+	$('#email').autocomplete({
+		source: host,
+		autoFocus: true,
+	});
 });
 
 
