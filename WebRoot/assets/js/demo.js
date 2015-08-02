@@ -1,5 +1,15 @@
 $(function() {
-	$('#search_button').button();
+	$('#search_button').button({
+		//disabled: true,//按钮就不可用
+//		label: '搜索',//标题
+		icons: {
+			primary: 'ui-icon-search',
+		},
+//		text: false,//让文字隐藏 
+	});
+	
+	
+	
 	
 	
 	$('#reg').dialog({
@@ -30,6 +40,12 @@ $(function() {
 	$('#reg_a').click(function() {
 		$('#reg').dialog('open');
 	});
+	
+//	$('#reg').parent().find('button').eq(1).button('disable');//禁用dialog中的某按钮
+	
+	$('#reg').buttonset();
+	
+	
 });
 
 
