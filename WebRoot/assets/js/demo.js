@@ -4,11 +4,8 @@ $(function() {
 			primary: 'ui-icon-search',
 		},
 	});
-	
-	
-	
-	
-	
+
+	/*初始化对话框*/
 	$('#reg').dialog({
 		title: '知乎注册',
 		buttons: {
@@ -28,7 +25,7 @@ $(function() {
 		show: 'slide',
 		hide: 'slide',
 	}); 
-	
+	/*显示对话框*/
 	$('#reg_a').click(function() {
 		$('#reg').dialog('open');
 	});
@@ -37,8 +34,19 @@ $(function() {
 	
 	$('#reg').buttonset();
 	
-	//生日部件
-	$('#date').datepicker(); 
+	/*生日部件*/
+	$('#date').datepicker({
+		changeMonth: true,//好选取month
+		changeYear: true,//好选取year
+		showButtonPanel: true,
+		closeText: '关闭',
+		currentText: '今天',
+		
+		maxDate: 0,		//可用于火车票购买日历控件
+//		minDate: -8000,
+//		hideIfNoPrevNext: true,
+		yearRange: '1950:2020',
+	}); 
 	
 	/*设置tooltip的属性*/
 	$('#reg input[title]').tooltip({

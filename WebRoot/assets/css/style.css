@@ -1,5 +1,5 @@
 body {
-	margin: 30px 0 0 0;
+	margin: 20px 0 0 0;
 	padding: 0;
 	font-size: 12px;
 	font-family:宋体;
@@ -17,6 +17,18 @@ body {
 /*邮箱自动补全悬停背景色*/
 .ui-menu-item a.ui-state-focus {
 	
+}
+
+/*修改当天日期的样式*/
+.ui-datepicker-week-end  .ui-datepicker-today .ui-state-highlight {
+	border: 1px solid #eee;
+	color: #f60;
+}
+
+/*修改选定日期的样式*/
+.ui-datepicker-current-day .ui-state-active {
+	border: 1px solid #eee;
+	color: #06f;
 }
 
 .ui-menu-item a {
