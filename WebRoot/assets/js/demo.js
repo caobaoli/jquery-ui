@@ -52,10 +52,44 @@ $(function() {
 	});
 	
 	/*邮箱自动补全*/
-	var host=['aa', 'aaaa', 'aaaaaa', 'bb'];
 	$('#email').autocomplete({
-		source: host,
+		delay: 0,/*加快反应速度*/
 		autoFocus: true,
+		source: function(request, response) {
+			//获取用户输入的内容
+//			alert(request.term);
+//			response(['aa','aaaa','aaaaaa','bb']);//展示补全结果
+			
+			var hosts=['126.com', '163.com', 'qq.com', 'gmail.com', 'sina.com.cn', 'hotmail.com'],
+				term = request.term,/*获取用户输入的内容*/
+				name = term,/*邮箱的用户名*/
+				host = '',/*邮箱的域名*/
+				ix = term.indexOf('@'),/*@的位置*/
+				result = [];/*最终呈现的邮箱列表*/
+			
+			result.push(term);
+			
+			/*当有@的时候，重新分配用户名和域名*/
+			if(ix > -1) {
+				name = term.slice(0, ix); /*从0开始筛选到ix*/
+				host = term.slice(ix + 1);/*选取ix以后的数据*/
+			}	
+			
+			if(name) {
+				/*如果用户已经输入@好后面的域名，那么就找到相关的域名提示，比如bnbbs@1,就提示bnbbs@126.com
+				 * 如果用户还没有输入@和后面的域名，那么就把所有的域名都提示出来
+				 * */
+				var findedHosts = (host ? findedHosts = $.grep(hosts, function(value, index) {
+					return value.indexOf(host) > -1;
+				}) : hosts),
+					findedResults = $.map(findedHosts, function(value, index) {
+						return name+'@'+value;
+				});
+				result = result.concat(findedResults);
+			}
+			
+			response(result);
+		},
 	});
 });
 
