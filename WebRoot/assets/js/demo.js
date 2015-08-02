@@ -10,7 +10,7 @@ $(function() {
 		title: '知乎注册',
 		buttons: {
 			'提交': function() {
-				alert('提交');
+				$(this).submit();
 			},
 			'关闭': function() {
 				$(this).dialog('close');
@@ -19,20 +19,93 @@ $(function() {
 		autoOpen: false,//不让html中显示
 		modal: true,//后台不可操作
 		resizable: false,//不可改变大小
-		width: 350,
+		width: 320,
 		height: 340,
 		closeText: '关闭',
 		show: 'slide',
 		hide: 'slide',
 	}); 
+	
 	/*显示对话框*/
 	$('#reg_a').click(function() {
 		$('#reg').dialog('open');
 	});
 	
-//	$('#reg input[type=radio]').button();
 	
-	$('#reg').buttonset();
+	$('#reg').buttonset().validate({
+		submitHandler: function(form) {
+			alert('验证完成，准备提交！');
+		},
+		
+		/**
+		 * 调整errors出现时的高度
+		 * @param errorMap
+		 * @param errorList
+		 */
+		showErrors: function(errorMap, errorList) {
+			var errors = this.numberOfInvalids();
+			if(errors>0) {
+				$('#reg').dialog('option', 'height', errors * 20 + 340);
+			} else {
+				$('#reg').dialog('option', 'height', 340);
+			}
+			this.defaultShowErrors();
+		},
+		
+		/**
+		 * 文本框在出错时的状态
+		 * @param element
+		 * @param errorClass
+		 */
+		highlight: function(element, errorClass) {
+			$(element).css('border', '1px solid #630');
+		},
+		
+		/**
+		 * 文本框在输入正确时状态
+		 * @param element
+		 * @param errorClass
+		 */
+		unhighlight: function(element, errorClass) {
+			$(element).css('border', '1px solid #ccc');
+			$(element).parent().find('span').html('&nbsp;').addClass('success');
+		},
+		
+		errorLabelContainer: 'ol.reg_error',
+		wrapper: 'li',
+		
+		rules: {
+			user: {
+				required: true,
+				minlength: 2,
+			},
+			pass: {
+				required: true,
+				minlength: 6,
+			},
+			email: {
+				required: true,
+				email: true,
+			},
+			date: {
+				date: true,
+			}
+		},
+		messages: {
+			user: {
+				required: '账号不得为空',
+				minlength: jQuery.format('账号不得小于{0}位'),
+			},
+			pass: {
+				required: '密码不得为空',
+				minlength: jQuery.format('密码不得小于{0}位'),
+			},
+			email: {
+				required: '邮箱不得为空',
+				minlength: '请输入正确的邮箱地址',
+			},
+		}
+	});
 	
 	/*生日部件*/
 	$('#date').datepicker({
@@ -43,21 +116,9 @@ $(function() {
 		currentText: '今天',
 		
 		maxDate: 0,		//可用于火车票购买日历控件
-//		minDate: -8000,
-//		hideIfNoPrevNext: true,
 		yearRange: '1950:2020',
 	}); 
 	
-	/*设置tooltip的属性*/
-	$('#reg input[title]').tooltip({
-//		disabled: true,
-//		content: '改变title',
-//		tooltipClass: 'a',//显示文字的css样式
-		position: {
-			my: 'left+5 center',
-			at: 'right center'
-		}
-	});
 	
 	/*邮箱自动补全*/
 	$('#email').autocomplete({

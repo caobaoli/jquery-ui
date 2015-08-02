@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/smoothness/jquery-ui.css">
 	<script type="text/javascript" src="../assets/js/jquery-1.11.3.js"></script>
 	<script type="text/javascript" src="../assets/js/jquery-ui.js"></script>
+	<script type="text/javascript" src="../assets/js/jquery.validate.js"></script>
 	<script type="text/javascript" src="../assets/js/demo.js"></script>
   </head>
   
@@ -31,7 +32,8 @@
   		</div>
   	</div>
   	
-  	<div id="reg" title="会员注册">
+  	<form id="reg" title="会员注册" action="123.html">
+  		<ol class="reg_error"></ol>
   		<p>
   			<label for="user">账号：</label>
   			<input name="user" type="text" class="text" id="user" title="请输入账号，不少于2位！"/>
@@ -55,7 +57,7 @@
   			<label for="date">生日：</label>
   			<input name="date" type="text" readonly="readonly" class="text" id="date">
   		</p>
-  	</div>
+  	</form>
   	
   </body>
 </html>

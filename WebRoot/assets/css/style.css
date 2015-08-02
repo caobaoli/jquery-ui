@@ -104,8 +104,24 @@ body {
 }
 
 #reg .star {
-	color: red;
+	color: maroon;
 	font-size: 14px; 
+}
+
+#reg .success {
+	dispaly: inline-block;
+	width: 30px;
+	background: url(../pic/reg_success.png) no-repeat;
+}
+
+#reg ol {
+	margin: 0;
+	padding: 0 0 0 20px;
+	color: maroon; 
+}
+
+#reg ol li {
+	height: 20px;
 }
 
 #reg .text {
