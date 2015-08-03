@@ -1,137 +1,150 @@
 body {
-	margin: 20px 0 0 0;
-	padding: 0;
-	font-size: 12px;
+	margin:40px 0 0 0;
+	padding:0;
+	font-size:12px;
 	font-family:宋体;
 	background:#fff;
 }
-/*更改jquery-ui主题对话框的背景*/
+/*更改jQuery UI主题的对话框header的背景*/
 .ui-widget-header {
-	
+	background:url(../img/ui_header_bg.png);
+}
+/*按钮正常状态的背景*/
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+	background:url(../img/ui_header_bg.png);
+}
+/*按钮点击状态的背景*/
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+	background:url(../img/ui_white.png);
 }
 /*工具提示的文本颜色*/
 .ui-tooltip {
-	color: #666;
+	color:#666;
 }
-
-/*邮箱自动补全悬停背景色*/
+/*邮箱自动补全的悬停背景色*/
 .ui-menu-item a.ui-state-focus {
-	
+	background:url(../img/ui_header_bg.png);
 }
-
-/*修改当天日期的样式*/
-.ui-datepicker-week-end  .ui-datepicker-today .ui-state-highlight {
-	border: 1px solid #eee;
-	color: #f60;
-}
-
-/*修改选定日期的样式*/
-.ui-datepicker-current-day .ui-state-active {
-	border: 1px solid #eee;
-	color: #06f;
-}
-
 .ui-menu-item a {
-	color: #666;
+	color:#666;
 }
-
+/*日历UI的今天单元格样式*/
+.ui-datepicker-today .ui-state-highlight {
+	border:1px solid #eee;
+	color:#f60;
+}
+/*日历UI的选定单元格样式*/
+.ui-datepicker-current-day .ui-state-active {
+	border:1px solid #eee;
+	color:#06f;
+}
+.a {
+	font-size:30px;
+}
 #header {
-	width: 100%;
-	height: 40px;
-	background: url(../pic/header_bg.png);
-	top: 0;
+	width:100%;
+	height:40px;
+	background:url(../img/header_bg.png);
+	position:absolute;
+	top:0;
 }
-
 #header .header_main {
-	width: 800px;
-	height: 40px;
-	margin: 0 auto;
+	width:800px;
+	height:40px;
+	margin:0 auto;
 }
-
 #header .header_main h1 {
-	margin: 0;
-	font-size: 20px;
-	color: #666;
-	height: 40px;
-	padding: 0 10px;
-	line-height: 40px;
-	float: left;
+	font-size:20px;
+	margin:0;
+	padding:0;
+	color:#666;
+	height:40px;
+	line-height:40px;
+	padding:0 10px;
+	float:left;
 }
-
 #header .header_search {
-	padding: 6px 0 0 0;
-	float: left;
-}
-
+	padding:6px 0 0 0;
+	float:left;
+} 
 #header .header_search .search {
-	width: 300px;
-	height: 24px;
-	border: 1px solid #ccc;
-	background: #fff;
-	color: #666;
-	font-size: 14px;
+	width:300px;
+	height:24px;
+	border:1px solid #ccc;
+	background:#fff;
+	color:#666;
+	font-size:14px;
+	text-indent:5px;
 }
-
 #header .header_button {
-	padding: 5px;
-	float: left;
+	padding:5px;
+	float:left;
 }
 #header .header_member {
-	float: right;
-	height: 40px;
-	line-height: 40px;
-	color: #555;
-	font-size: 14px;
+	float:right;
+	height:40px;
+	line-height:40px;
+	color:#555;
+	font-size:14px;
 }
-
 #header .header_member a {
-	text-decoration: none;
-	color: #555;
+	text-decoration:none;
+	color:#555;
+	font-size:14px;
 }
-
 #reg {
-	padding: 15px 0 0 15px;
+	padding:15px 0 0 15px;
 }
-
 #reg p {
-	margin: 10px 0;
-	padding: 0;
+	margin:10px 0;
+	padding:0;
 }
-
 #reg p label {
-	font-size: 14px;
-	color: #666;
+	font-size:14px;
+	color:#666;
 }
-
 #reg .star {
-	color: maroon;
-	font-size: 14px; 
+	font-size:14px;
+	color:maroon;
 }
-
-#reg .success {
-	dispaly: inline-block;
-	width: 30px;
-	background: url(../pic/reg_success.png) no-repeat;
+#reg .succ {
+	display:inline-block;
+	width:28px;
+	background:url(../img/reg_succ.png) no-repeat;
 }
-
 #reg ol {
-	margin: 0;
-	padding: 0 0 0 20px;
-	color: maroon; 
+	margin:0;
+	padding:0 0 0 20px;
+	color:maroon;
 }
-
 #reg ol li {
-	height: 20px;
+	height:20px;
+}
+#reg .text {
+	border-radius:4px;
+	border:1px solid #ccc;
+	background:#fff;
+	width:200px;
+	height:25px;
+	line-height:25px;
+	text-indent:5px;
+	font-size:13px;
+	color:#666;
+}
+#loading {
+	background:url(../img/loading.gif) no-repeat 20px center;
+	line-height:25px;
+	font-size:14px;
+	font-weight:bold;
+	text-indent:40px;
+	color:#666;
 }
 
-#reg .text {
-	border-radius: 6px;
-	border: 1px solid #ccc;
-	background: #fff;
-	width: 200px;
-	height: 25px;
-	line-height: 25;
-	text-indent: 5px;
-	font-size: 13px;
-	color: #666;
-}
+
+
+
+
+
+
+
+

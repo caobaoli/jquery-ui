@@ -23,8 +23,16 @@ public class TestServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String user = request.getParameter("user");
+		String pass = request.getParameter("pass");
 		String email = request.getParameter("email");
-		System.out.println(">>>>>>>>>>>"+user+":"+email);
+		String sex = request.getParameter("sex");
+		String date = request.getParameter("date");
+		System.out.println(user+">"+pass+">"+email+">"+sex+">"+date);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		//给前台页面响应
+		response.getWriter().print("成功");
+		response.getWriter().close();
 		
 	}
 
