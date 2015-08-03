@@ -6,6 +6,24 @@ $(function () {
 		},
 	});
 	
+	$('#member, #logout').hide();
+	
+	if ($.cookie('user')) {
+		$('#member, #logout').show();
+		$('#reg_a, #login_a').hide();
+		$('#member').html($.cookie('user'));
+	} else {
+		$('#member, #logout').hide();
+		$('#reg_a, #login_a').show();
+	}
+	/**
+	 * 点击退出
+	 * */
+	$('#logout').click(function () {
+		$.removeCookie('user');
+		window.location.href = '/index.html';
+	});
+	
 	$('#loading').dialog({
 		autoOpen : false,
 		modal : true,
@@ -45,13 +63,17 @@ $(function () {
 				success : function (responseText, statusText) {
 					if (responseText) {
 						$('#reg').dialog('widget').find('button').eq(1).button('enable');
-						$('#loading').css('background', 'url(img/success.gif) no-repeat 20px center').html('数据新增成功...');
+						$('#loading').css('background', 'url(assets/img/success.gif) no-repeat 20px center').html('数据新增成功...');
+						$.cookie('user', $('#user').val());
 						setTimeout(function () {
 							$('#loading').dialog('close');
 							$('#reg').dialog('close');
 							$('#reg').resetForm();//即清空form
 							$('#reg span.star').html('*').removeClass('succ');
-							$('#loading').css('background', 'url(img/loading.gif) no-repeat 20px center').html('数据交互中...');
+							$('#loading').css('background', 'url(assets/img/loading.gif) no-repeat 20px center').html('数据交互中...');
+							$('#member, #logout').show();
+							$('#reg_a, #login_a').hide();
+							$('#member').html('欢迎：'+$.cookie('user'));
 						}, 1000);
 					}
 				},
@@ -137,7 +159,7 @@ $(function () {
 			//绑定数据源的
 			//response(['aa', 'aaaa', 'aaaaaa', 'bb']);
 			
-			var hosts = ['qq.com', '163.com', '263.com', 'sina.com.cn','gmail.com', 'hotmail.com'],
+			var hosts = ['126.com', 'qq.com', '163.com', 'sina.com.cn','gmail.com', 'hotmail.com'],
 				term = request.term,		//获取用户输入的内容
 				name = term,				//邮箱的用户名
 				host = '',					//邮箱的域名
