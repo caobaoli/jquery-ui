@@ -65,6 +65,24 @@
   		</p>
   	</form>
   	
+  	<form id="login" title="会员登录">
+  		<ol class="login_error"></ol>
+  		<p>
+  			<label for="user">账号：</label>
+  			<input name="login_user" type="text" class="text" id="login_user" title="请输入账号，不少于2位！"/>
+  			<span class="star">*</span>
+  		</p>
+  		<p>
+  			<label for="pass">密码：</label>
+  			<input name="login_pass" type="password" class="text" id="login_pass" title="请输入密码，不少于6位！"/>
+  			<span class="star">*</span>
+  		</p>
+  		<p>
+		<input type="checkbox" name="expires" id="expires" checked="checked" />
+		<label for="expires">登录后有效期一周</label>
+	</p>
+  	</form>
+  	
   	<div id="loading">数据交互中...</div>
   </body>
 </html>

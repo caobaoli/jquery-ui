@@ -46,7 +46,7 @@ $(function () {
 		height : 340,
 		closeText : '关闭',
 		buttons : {
-			'提交' : function () {
+			'注册' : function () {
 				$(this).submit();
 			}
 		}
@@ -109,6 +109,13 @@ $(function () {
 			user : {
 				required : true,
 				minlength : 2,
+				/**
+				 * 发异步请求，判断是否已经注册
+				 */
+//				remote : {
+//					url: 'test.do',
+//					type : 'POST',
+//				},
 			},
 			pass : {
 				required : true,
@@ -126,6 +133,7 @@ $(function () {
 			user : {
 				required : '帐号不得为空！',
 				minlength : jQuery.format('帐号不得小于{0}位！'),
+				remote : '该账号已注册',
 			},
 			pass : {
 				required : '密码不得为空！',
@@ -195,7 +203,120 @@ $(function () {
 		},	
 	});
 	
+	/**
+	 * 用户登录
+	 */
+	$('#login_a').click(function () {
+		$('#login').dialog('open');
+	});
 
+	$('#login').dialog({
+		autoOpen : false,
+		modal : true,
+		resizable : false,
+		width : 320,
+		height : 240,
+		closeText : '关闭',
+		buttons : {
+			'登录' : function () {
+				$(this).submit();
+			}
+		}
+	}).validate({
+	
+		submitHandler : function (form) {
+			$(form).ajaxSubmit({
+				url : 'text.do',
+				type : 'POST',
+				beforeSubmit : function (formData, jqForm, options) {
+					$('#loading').dialog('open');
+					$('#login').dialog('widget').find('button').eq(1).button('disable');
+				},
+				success : function (responseText, statusText) {
+					if (responseText) {
+						$('#login').dialog('widget').find('button').eq(1).button('enable');
+						$('#loading').css('background', 'url(assets/img/success.gif) no-repeat 20px center').html('登录成功...');
+						/**
+						 * 此操作使cookie七天后过期
+						 */
+						if ($('#expires').is(':checked')) {
+							$.cookie('user', $('#login_user').val(), {
+								expires : 7,
+							});
+						} else {
+							$.cookie('user', $('#login_user').val());
+						}
+						setTimeout(function () {
+							$('#loading').dialog('close');
+							$('#login').dialog('close');
+							$('#login').resetForm();//即清空form
+							$('#login span.star').html('*').removeClass('succ');
+							$('#loading').css('background', 'url(assets/img/loading.gif) no-repeat 20px center').html('信息验证中...');
+							$('#member, #logout').show();
+							$('#reg_a, #login_a').hide();
+							$('#member').html('欢迎：'+$.cookie('user'));
+						}, 1000);
+					}
+				},
+			});
+		},
+	
+		showErrors : function (errorMap, errorList) {
+			var errors = this.numberOfInvalids();
+			
+			if (errors > 0) {
+				$('#login').dialog('option', 'height', errors * 20 + 240);//根据现实的高度+
+			} else {
+				$('#login').dialog('option', 'height', 240);
+			}
+			
+			this.defaultShowErrors();
+		},
+		
+		highlight : function (element, errorClass) {
+			$(element).css('border', '1px solid #630');
+			$(element).parent().find('span').html('*').removeClass('succ');
+		},
+		
+		unhighlight : function (element, errorClass) {// 去*， 加图片
+			$(element).css('border', '1px solid #ccc');
+			$(element).parent().find('span').html('&nbsp;').addClass('succ');
+		},
+	
+		errorLabelContainer : 'ol.login_error',
+		wrapper : 'li',
+	
+		rules : {
+			login_user : {
+				required : true,
+				minlength : 2,
+			},
+			login_pass : {
+				required : true,
+				minlength : 6,
+				remote : {
+					url : 'test.do',
+					type : 'POST',
+					data : {
+						login_user : function() {
+							return $('#login_user').val();
+						}
+					}
+				},
+			},
+		},
+		messages : {
+			login_user : {
+				required : '帐号不得为空！',
+				minlength : jQuery.format('帐号不得小于{0}位！'),
+			},
+			login_pass : {
+				required : '密码不得为空！',
+				minlength : jQuery.format('密码不得小于{0}位！'),
+				remote: '账号密码错误',
+			},
+		}
+	});
 });
 
 

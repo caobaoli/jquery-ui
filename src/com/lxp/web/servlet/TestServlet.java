@@ -24,6 +24,8 @@ public class TestServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String user = request.getParameter("user");
 		String pass = request.getParameter("pass");
+		user = request.getParameter("login_user");
+		pass = request.getParameter("login_pass");
 		String email = request.getParameter("email");
 		String sex = request.getParameter("sex");
 		String date = request.getParameter("date");
@@ -31,7 +33,7 @@ public class TestServlet extends HttpServlet {
 		
 		response.setContentType("text/html; charset=UTF-8");
 		//给前台页面响应
-		response.getWriter().print("成功");
+		response.getWriter().print("false");
 		response.getWriter().close();
 		
 	}
