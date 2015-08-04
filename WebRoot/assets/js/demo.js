@@ -56,6 +56,9 @@ $(function () {
 			$(form).ajaxSubmit({
 				url : 'text.do',
 				type : 'POST',
+				data : {
+					param: 'reg',
+				},
 				beforeSubmit : function (formData, jqForm, options) {
 					$('#loading').dialog('open');
 					$('#reg').dialog('widget').find('button').eq(1).button('disable');
@@ -112,10 +115,13 @@ $(function () {
 				/**
 				 * 发异步请求，判断是否已经注册
 				 */
-//				remote : {
-//					url: 'test.do',
-//					type : 'POST',
-//				},
+				remote : {
+					url: 'test.do',
+					type : 'POST',
+					data : {
+						param : 'regValidate',
+					},
+				},
 			},
 			pass : {
 				required : true,
@@ -228,6 +234,9 @@ $(function () {
 			$(form).ajaxSubmit({
 				url : 'text.do',
 				type : 'POST',
+				data : {
+					param : 'login',
+				},
 				beforeSubmit : function (formData, jqForm, options) {
 					$('#loading').dialog('open');
 					$('#login').dialog('widget').find('button').eq(1).button('disable');
@@ -290,6 +299,13 @@ $(function () {
 			login_user : {
 				required : true,
 				minlength : 2,
+				remote : {
+					url : 'test.do',
+					type : 'POST',
+					data : {
+						param : 'loginValidate2',
+					},
+				},
 			},
 			login_pass : {
 				required : true,
@@ -300,7 +316,8 @@ $(function () {
 					data : {
 						login_user : function() {
 							return $('#login_user').val();
-						}
+						},
+						param : 'loginValidate',
 					}
 				},
 			},
@@ -309,11 +326,12 @@ $(function () {
 			login_user : {
 				required : '帐号不得为空！',
 				minlength : jQuery.format('帐号不得小于{0}位！'),
+				remote : '该账号不存在，请注册'
 			},
 			login_pass : {
 				required : '密码不得为空！',
 				minlength : jQuery.format('密码不得小于{0}位！'),
-				remote: '账号密码错误',
+				remote: '账号或密码错误',
 			},
 		}
 	});
