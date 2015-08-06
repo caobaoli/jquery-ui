@@ -8,13 +8,17 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     
     <link rel="shortcut icon" href="../assets/img/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="../assets/uEditor/uEditor.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/smoothness/jquery-ui.css">
 	<script type="text/javascript" src="../assets/js/jquery-1.11.3.js"></script>
+	<!-- jquery向下兼容文件 -->
+	<script type="text/javascript" src="../assets/js/jquery-migrate-1.2.1.js"></script>
 	<script type="text/javascript" src="../assets/js/jquery-ui.js"></script>
 	<script type="text/javascript" src="../assets/js/jquery.validate.js"></script>
 	<script type="text/javascript" src="../assets/js/jquery.form.js"></script>
 	<script type="text/javascript" src="../assets/js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="../assets/uEditor/uEditor.js"></script>
 	<script type="text/javascript" src="../assets/js/demo.js"></script>
   </head>
   
@@ -27,6 +31,9 @@
   			</div>
   			<div class="header_button">
   				<button id="search_button">搜索</button>
+  			</div>
+  			<div class="header_button">
+  				<button id="question_button">提问</button>
   			</div>
   			<div class="header_member">
   				<a href="javascript:void(0)" id="reg_a">注册</a>
@@ -83,6 +90,16 @@
 	</p>
   	</form>
   	
+  	<form id="question" title="提问">
+  		<p>
+  			<label for="title">问题名称：</label>
+  			<input name="title" type="text" style="width: 390px;" class="text" id="title" />
+  		</p>
+  		<p>
+			<textarea class="uEditorCustom" name="content">请输入问题描述！</textarea>
+		</p>
+  	</form>
   	<div id="loading">数据交互中...</div>
+  	<div id="error">请登录后操作...</div>
   </body>
 </html>

@@ -1,10 +1,72 @@
 $(function () {
-
+	
+	/**
+	 * 搜索按钮
+	 */
 	$('#search_button').button({
 		icons : {
 			primary : 'ui-icon-search',
 		},
 	});
+	
+	/**
+	 * 提问按钮
+	 */
+	$('#question_button').button({
+		icons : {
+			primary: 'ui-icon-lightbulb',
+		}
+	});
+	
+	/**
+	 * 未登录不可操作
+	 */
+	$('#question_button').click(function() {
+		if($.cookie('user')) {
+			$('#question').dialog('open');
+		} else {
+			$('#error').dialog('open');
+			setTimeout(function() {
+				$('#error').dialog('close');
+				$('#login').dialog('open');
+			}, 1000);
+		}
+	});
+	
+	/**
+	 * 未登录显示错误内容
+	 */
+	$('#error').dialog({
+		autoOpen : false,
+		modal : true,
+		closeOnEscape : false,
+		resizable : false,
+		draggable : false,
+		width : 180,
+		height : 50,
+	}).parent().find('.ui-widget-header').hide();
+	
+	/**
+	 * 问题提出的dialog
+	 */
+	$('#question').dialog({
+		autoOpen : false,
+		modal : true,
+		resizable : false,
+		width : 500,
+		height : 360,
+		closeText : '关闭',
+		buttons : {
+			'发布' : function () {
+				$(this).submit();
+			}
+		},
+	});
+	
+	/**
+	 * 文本域
+	 */
+	$('.uEditorCustom').uEditor();
 	
 	$('#member, #logout').hide();
 	
@@ -24,6 +86,9 @@ $(function () {
 		window.location.href = '/index.html';
 	});
 	
+	/**
+	 * 提交注册登录数据等待显示内容
+	 */
 	$('#loading').dialog({
 		autoOpen : false,
 		modal : true,
@@ -32,12 +97,15 @@ $(function () {
 		draggable : false,
 		width : 180,
 		height : 50,
-	}).parent().parent().find('.ui-widget-header').hide();
+	}).parent().find('.ui-widget-header').hide();
 	
 	$('#reg_a').click(function () {
 		$('#reg').dialog('open');
 	});
 
+	/**
+	 * 用户注册
+	 */
 	$('#reg').dialog({
 		autoOpen : false,
 		modal : true,
@@ -53,6 +121,9 @@ $(function () {
 	}).buttonset().validate({
 	
 		submitHandler : function (form) {
+			/**
+			 * 用户注册之表单
+			 */
 			$(form).ajaxSubmit({
 				url : 'text.do',
 				type : 'POST',
@@ -162,7 +233,7 @@ $(function () {
 	});
 		
 	/**
-	 * 邮箱自动填充
+	 * 用户注册邮箱自动填充
 	 */
 	$('#email').autocomplete({
 		delay : 0,
